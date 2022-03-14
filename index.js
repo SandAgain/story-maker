@@ -13,14 +13,14 @@ class story {
     runFunc(func) {
         func = this.data[func];
 
-        if (!func.options) {console.log(chalk.green('?'), func.character ? func.character : "" + chalk.bold(func.message)); return};
+        if (!func.options) {console.log(chalk.green('?'), func.character || "", chalk.bold(func.message)); return};
 
         inquirer
             .prompt([
                 {
                     type: 'list',
                     name: 'choice',
-                    message: func.message,
+                    message: `${func.character || ""} func.message`,
                     choices: Object.keys(func.options)
                 }
             ])
