@@ -1,6 +1,6 @@
 {
   "name": "storymaker",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "A simple js app that makes a simple story from objects.",
   "main": "index.js",
   "type": "module",

@@ -1,11 +1,11 @@
 # STORY MAKER
 
 ## Creating story
-A story consists of 'functions'
-functions are something that can happen in a story
-It has a message, and options
-A story always starts with the start function
-The start function takes one boolean argument, this toggles if it should clear the console
+A story consists of 'functions'.
+functions are something that can happen in a story,
+It has a message, and options.
+A story always starts with the start function,
+The start function takes one boolean argument, this toggles if it should clear the console.
 
 ```js
 const myStory = new story({
@@ -15,8 +15,8 @@ const myStory = new story({
 myStory.start(true)
 ```
 
-You can define options as a object
-the key is the option and the value is the function it will run
+You can define options as a object,
+the key is the option and the value is the function it will run.
 
 ```js
 const myStory = new story({
@@ -26,7 +26,7 @@ const myStory = new story({
 myStory.start(true)
 ```
 
-Now it is the time we define multiple functions
+Now it is the time we define multiple functions.
 
 ```js
 const myStory = new story({
@@ -39,7 +39,7 @@ myStory.start(true)
 ```
 
 ## Making more complex stories
-We can make branching paths to multiple endings
+We can make branching paths to multiple endings!
 
 ```js
 const myStory = new story({
