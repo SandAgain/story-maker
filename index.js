@@ -31,7 +31,7 @@ class story {
 
     /**
      * Starts the story
-     * @param {boolean} clearAll 
+     * @param {boolean} clearAll Toggles if it will clear the console
      */
     start(clearAll) {
         if (clearAll) {console.clear()}

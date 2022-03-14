@@ -5,11 +5,14 @@ A story consists of 'functions'
 functions are something that can happen in a story
 It has a message, and options
 A story always starts with the start function
+The start function takes one boolean argument, this toggles if it should clear the console
 
 ```js
 const myStory = new story({
     start: {message: "Hello, how are you"}
 })
+
+myStory.start(true)
 ```
 
 You can define options as a object
@@ -19,6 +22,8 @@ the key is the option and the value is the function it will run
 const myStory = new story({
     start: {message: "Hello, how are you", options: {"Im fine!": "fine", "Im not so good...": "notFine"}}
 })
+
+myStory.start(true)
 ```
 
 Now it is the time we define multiple functions
@@ -29,6 +34,8 @@ const myStory = new story({
     fine: {message: "Nice :)"},
     notFine: {message: "I dont care, lol"}
 })
+
+myStory.start(true)
 ```
 
 ## Making more complex stories
@@ -46,6 +53,8 @@ const myStory = new story({
     askYes: {message: "LIAR"},
     askNo: {message: "Correct :)"}
 })
+
+myStory.start(true)
 ```
 
 And lastly, add characters
@@ -62,6 +71,8 @@ const myStory = new story({
     askYes: {message: "LIAR", character: "John"},
     askNo: {message: "Correct :)", character: "John"}
 })
+
+myStory.start(true)
 ```
 
 or
@@ -80,4 +91,6 @@ const myStory = new story({
     askYes: {message: "LIAR"},
     askNo: {message: "Correct :)"}
 })
+
+myStory.start(true)
 ```
