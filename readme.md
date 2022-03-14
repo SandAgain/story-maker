@@ -78,7 +78,7 @@ myStory.start(true)
 or
 
 ```js
-character = "John";
+const character = "John";
 
 const myStory = new story({
     start: {message: "Hello, how are you?", options: {"Im fine!": "fine", "Im not so good...": "notFine"}, character},
@@ -88,8 +88,8 @@ const myStory = new story({
     fineYes: {message: "Cool :)", character},
     fineNo: {message: "WHY DID YOU LIE TO ME IN THE FIRST PLACE!!", character},
 
-    askYes: {message: "LIAR"},
-    askNo: {message: "Correct :)"}
+    askYes: {message: "LIAR", character},
+    askNo: {message: "Correct :)", character}
 })
 
 myStory.start(true)
