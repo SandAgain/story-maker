@@ -1,9 +1,11 @@
 const inquirer = require('inquirer')
-const chalk = require('chalk');
+const chalk = require('chalk')
 
 class story {
     constructor(data) {
         this.data = data
+        this.vars = {}
+        this.end = () => {}
     }
     
     /**
@@ -11,34 +13,83 @@ class story {
      * @param {string} func 
      */
     runFunc(func) {
-        if (!this.data[func]) {console.log(chalk.red("Cannot load function \"" + func + "\"")); return};
+        const types = ["message", "choices", "prompt"]
 
-        func = this.data[func];
+        if (!this.data[func]) {console.log(chalk.red("Cannot load function \"" + func + "\"")); return}
 
-        if (!func.options) {console.log(chalk.green('?'), chalk.bold(func.character ? func.character + ": " : "") || "" + chalk.bold(func.message)); return};
+        func = this.data[func]
+        const character = func.character ? func.character + ": " : ""
 
-        inquirer
-            .prompt([
-                {
-                    type: 'list',
-                    name: 'choice',
-                    message: `${func.character ? func.character + ":" : ""}${func.message}`,
-                    choices: Object.keys(func.options)
-                }
-            ])
-            .then(choice => {
-                this.runFunc(func.options[choice.choice]);
-            });
-    };
+        let message = character + func.message
+        message.split(" ").forEach(segment => {
+            if (segment.startsWith("$")) {
+                if (!Object.keys(this.vars).includes(segment.slice(1))) {console.log(chalk.red("Cannot get variable \"" + segment.slice(1) + "\"")); return}
+                message = message.replace(segment, this.vars[segment.slice(1)])
+            } else {
+                message = message
+            }
+        })
+
+        if (func.func) {func.func()}
+        if (!func.type) {func.type = "message"}
+        if (!types.includes(func.type)) {console.log(chalk.red("Type \"" + func.type + "\" Does not exist")); return}
+        if (!func.options && func.type != "message") {console.log(chalk.red("Did not find options for type", func.type)); return}
+
+        switch (func.type) {
+            case "message":
+                console.log(chalk.bold(chalk.green("!"), message))
+                if (!func.next) {this.end()}
+
+                if (func.next) {this.runFunc(func.next)}
+
+            case "choices":
+                inquirer
+                    .prompt([
+                        {
+                            type: 'list',
+                            name: 'choice',
+                            message,
+                            choices: Object.keys(func.options[0])
+                        }
+                    ])
+                    .then(choice => {
+                        this.runFunc(func.options[0][choice.choice])
+                    })
+            case "prompt":
+                inquirer
+                    .prompt([
+                        {
+                            type: 'input',
+                            name: 'answer',
+                            message,
+                        }
+                    ])
+                    .then(choice => {
+                        this.vars[func.options[0]] = choice.answer
+                        if (!func.next) {this.end()}
+                        if (func.next) {this.runFunc(func.next)}
+                })
+
+            default:
+        }
+    }
 
     /**
      * Starts the story
      * @param {boolean} clearAll Toggles if it will clear the console
      */
-    start(clearAll) {
-        if (clearAll) {console.clear()};
-        this.runFunc('start');
-    };
-};
+    async start(clearAll) {
+        if (clearAll) {console.clear()}
+        this.runFunc('start')
+    }
 
-module.exports = story;
+    /**
+     * Sets what should happen after the story is done running
+     * @param {Function} func 
+     */
+    setEnd(func) {
+        this.end = func
+    }
+}
+
+module.exports = story

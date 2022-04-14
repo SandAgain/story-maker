@@ -1,6 +1,6 @@
 {
   "name": "story-maker",
-  "version": "2.2.2",
+  "version": "3.0.0",
   "description": "A simple js app that makes a simple story from objects.",
   "main": "index.js",
   "type": "commonjs",
