@@ -1,5 +1,5 @@
 {
-  "name": "storymaker",
+  "name": "story-maker",
   "version": "2.1.4",
   "description": "A simple js app that makes a simple story from objects.",
   "main": "index.js",
@@ -15,5 +15,9 @@
   },
   "engines": {
     "node": ">= 9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jitty-code/story-maker.git"
   }
 }
