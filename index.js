@@ -43,6 +43,7 @@ class story {
                 if (func.next) {this.runFunc(func.next)}
 
             case "choices":
+                if (func.type != "choices") {return}
                 inquirer
                     .prompt([
                         {
