@@ -34,9 +34,9 @@ class story {
      * @param {boolean} clearAll Toggles if it will clear the console
      */
     start(clearAll) {
-        if (clearAll) {console.clear()}
+        if (clearAll) {console.clear()};
         this.runFunc('start');
     };
 };
 
-export default story
+module.exports = story;
