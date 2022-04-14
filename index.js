@@ -11,16 +11,18 @@ class story {
      * @param {string} func 
      */
     runFunc(func) {
+        if (!this.data[func]) {console.log(chalk.red("Cannot load function \"" + func + "\"")); return};
+
         func = this.data[func];
 
-        if (!func.options) {console.log(chalk.green('?'), chalk.bold(func.character + ":") || "", chalk.bold(func.message)); return};
+        if (!func.options) {console.log(chalk.green('?'), chalk.bold(func.character ? func.character + ": " : "") || "" + chalk.bold(func.message)); return};
 
         inquirer
             .prompt([
                 {
                     type: 'list',
                     name: 'choice',
-                    message: `${`${func.character}:` || ""} ${func.message}`,
+                    message: `${func.character ? func.character + ":" : ""}${func.message}`,
                     choices: Object.keys(func.options)
                 }
             ])
