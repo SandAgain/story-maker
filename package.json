@@ -1,16 +1,16 @@
 {
   "name": "story-maker",
-  "version": "2.1.5",
+  "version": "2.2.0",
   "description": "A simple js app that makes a simple story from objects.",
   "main": "index.js",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "test": "node ."
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "chalk": "^5.0.1",
+    "chalk": "^4.1.2",
     "inquirer": "^8.2.1"
   },
   "engines": {

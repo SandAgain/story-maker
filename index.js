@@ -1,5 +1,5 @@
-import inquirer from 'inquirer'
-import chalk from 'chalk';
+const inquirer = require('inquirer')
+const chalk = require('chalk');
 
 class story {
     constructor(data) {
